@@ -46,3 +46,19 @@ linear_func = lambda x: x @ theta
 ax = sns.scatterplot(x=df['Population of City in 10,000s'], 
                      y=df['Profit in $10,000s'], data=df)
 plt.plot(df['Population of City in 10,000s'], linear_func(X))
+
+#Predict values for a population of size 35,000
+predict1 = (np.array([[1, 3.5]]) @ theta).ravel()
+r1 = predict1 * 10000
+print("For population = 35,000, we predict a profit of " + str(r1[0]))
+
+#Predict values for a population of size 70,000
+predict2 = (np.array([[1, 7]]) @ theta).ravel()
+r2 = predict2 * 10000
+print("For population = 70,000, we predict a profit of {:.2f}".format(r2[0]))
+
+#Plot the convergence graph
+dic = {'Number of iterations': range(iterations), 'Cost J':J_hist}
+df_2 = pd.DataFrame(dic)
+sns.relplot(x='Number of iterations', y='Cost J', data=df_2)
+
